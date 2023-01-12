@@ -1173,7 +1173,11 @@ public abstract class WeightedBoomerang<W extends Weight> {
           new FieldWritePOI(cfgEdge, var, field, stmt.getRightOp()),
           query);
     } else {
-      var = ((AllocVal) query.var()).getDelegate();
+      var = query.var();
+      if (var instanceof AllocVal) {
+        var = ((AllocVal) var).getDelegate();
+      }
+
       field = Field.empty();
     }
     if (query instanceof WeightedForwardQuery) {
