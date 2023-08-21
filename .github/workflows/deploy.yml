@@ -1,0 +1,32 @@
+name: deploy
+
+on: push
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+    runs-on: ${{ matrix.os }}
+    name: Project build in ${{ matrix.os }}
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      # Sets up Java version
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'adopt'
+          java-package: 'jdk'
+          java-version: '8'
+          server-id: 'ossrh' # must match the serverId configured for the nexus-staging-maven-plugin
+          server-username: OSSRH_USERNAME # Env var that holds your OSSRH user name
+          server-password: OSSRH_PASSWORD # Env var that holds your OSSRH user pw
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }} # Substituted with the value stored in the referenced secret
+          gpg-passphrase: SIGN_KEY_PASS # Env var that holds the key's passphrase
+      - name: Deploy
+        run: mvn -f -B -U clean deploy
+        env:
+          SIGN_KEY_PASS: ${{ secrets.GPG_PRIVATE_KEY_PASSPHRASE }}
+          OSSRH_USERNAME: ${{ secrets.SONATYPE_USER }}
+          OSSRH_PASSWORD: ${{ secrets.SONATYPE_PW }}
