@@ -1,14 +1,11 @@
-name: deploy
+name: Deploy SPDS
 
-on: push
+on: [workflow_dispatch]
 
 jobs:
-  build:
-    strategy:
-      matrix:
-        os: [ ubuntu-latest ]
-    runs-on: ${{ matrix.os }}
-    name: Project build in ${{ matrix.os }}
+  deployment:
+    runs-on: ubuntu-latest
+    name: SPDS deployment 
     steps:
       - name: Checkout source code
         uses: actions/checkout@v3
@@ -24,8 +21,8 @@ jobs:
           server-password: OSSRH_PASSWORD # Env var that holds your OSSRH user pw
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }} # Substituted with the value stored in the referenced secret
           gpg-passphrase: SIGN_KEY_PASS # Env var that holds the key's passphrase
-      - name: Deploy
-        run: mvn -f -B -U clean deploy
+      - name: Deploy SPDS
+        run: mvn -B -U clean deploy -Pdeployment -DskipTests
         env:
           SIGN_KEY_PASS: ${{ secrets.GPG_PRIVATE_KEY_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.SONATYPE_USER }}
