@@ -18,7 +18,7 @@ public class BoomerangTimeoutException extends RuntimeException {
     private IBoomerangStats stats;
     private long elapsed;
 
-    BoomerangTimeoutException(long elapsed, IBoomerangStats stats) {
+    public BoomerangTimeoutException(long elapsed, IBoomerangStats stats) {
         this.elapsed = elapsed;
         this.stats = stats;
     }
