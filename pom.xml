@@ -127,7 +127,7 @@
 	<repositories>		
 		<repository>
 			<id>github</id>
-			<url>https://johspaeth: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@maven.pkg.github.com/johspaeth/PathExpression</url>
+			<url>https://johspaeth:${env.GITHUB_PATH_EXPRESSION_READ_ACCESS_TOKEN}@maven.pkg.github.com/johspaeth/PathExpression</url>
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
