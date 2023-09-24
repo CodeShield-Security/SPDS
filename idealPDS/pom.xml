@@ -43,9 +43,9 @@
             <version>29.0-jre</version>
         </dependency>
         <dependency>
-            <groupId>de.fraunhofer.iem</groupId>
-            <artifactId>PathExpression</artifactId>
-            <version>1.0.0</version>
+			<groupId>de.fraunhofer.iem</groupId>
+			<artifactId>pathexpression</artifactId>
+			<version>1.0.1</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

@@ -22,8 +22,8 @@
 		</dependency>
 		<dependency>
 			<groupId>de.fraunhofer.iem</groupId>
-			<artifactId>PathExpression</artifactId>
-			<version>1.0.0</version>
+			<artifactId>pathexpression</artifactId>
+			<version>1.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
