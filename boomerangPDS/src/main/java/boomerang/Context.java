@@ -3,8 +3,7 @@ package boomerang;
 import boomerang.jimple.Statement;
 
 /**
- * A context is stored within the context graph. And must at least have a statement associated with it. This will be
- * used by the {@link ContextRequester} to retrieve more contexts upon need.
+ * A context is stored within the context graph. And must at least have a statement associated with it. 
  * 
  * @author "Johannes Spaeth"
  *
