@@ -9,6 +9,8 @@
 	<version>2.5.1</version>
 	<packaging>pom</packaging>
 	<name>SPDS</name>
+	<description>Synchronized Pushdown Systems for Pointer and Data-Flow Analysis</description>
+	<url>https://github.com/CodeShield-Security/SPDS</url>
 	<licenses>
 		<license>
 			<name>Eclipse Public License - v 2.0</name>
