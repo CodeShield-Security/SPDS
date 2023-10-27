@@ -24,9 +24,7 @@
 	<developers>
 		<developer>
 			<name>Johannes Spaeth</name>
-			<email>johannes.spaeth@codeshield.de</email>
-			<organization>CodeShield GmbH</organization>
-			<organizationUrl>https://codeshield.de/</organizationUrl>
+			<email>mail@johspaeth.de</email>
 		</developer>
 		<developer>
 			<name>Manuel Benz</name>
@@ -121,18 +119,29 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-javadoc</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
-	<repositories>		
+	<repositories>
 		<repository>
-			<id>github</id>
-			<url>https://johspaeth:${env.GITHUB_PATH_EXPRESSION_READ_ACCESS_TOKEN}@maven.pkg.github.com/johspaeth/PathExpression</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
-	</repositories>
+	<repositories>
 	<distributionManagement>
 		<snapshotRepository>
 			<id>ossrh</id>
