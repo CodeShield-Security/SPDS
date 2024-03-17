@@ -30,7 +30,7 @@
         </dependency>
         <dependency>
             <groupId>de.fraunhofer.iem</groupId>
-            <artifactId>PathExpression</artifactId>
+            <artifactId>pathexpression</artifactId>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

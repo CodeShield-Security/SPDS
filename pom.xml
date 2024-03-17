@@ -6,6 +6,8 @@
     <version>3.1.2</version>
     <packaging>pom</packaging>
     <name>SPDS</name>
+    <description>Synchronized Pushdown Systems for Pointer and Data-Flow Analysis</description>
+    <url>https://github.com/CodeShield-Security/SPDS</url>
 
     <licenses>
         <license>
@@ -165,8 +167,8 @@
             </dependency>
             <dependency>
                 <groupId>de.fraunhofer.iem</groupId>
-                <artifactId>PathExpression</artifactId>
-                <version>1.0.0</version>
+                <artifactId>pathexpression</artifactId>
+                <version>1.0.2</version>
             </dependency>
             <dependency>
                 <groupId>org.soot-oss</groupId>
@@ -207,26 +209,16 @@
     </dependencyManagement>
 
     <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
         <repository>
-            <id>github</id>
-            <name>GitHub CodeShield-Security Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/CodeShield-Security/SPDS/</url>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
 
-    <repositories>
-        <repository>
-            <id>sonatype-snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </repository>
-        <repository>
-            <id>swt</id>
-            <url>https://soot-build.cs.uni-paderborn.de/nexus/repository/swt-upb/</url>
-        </repository>
-    </repositories>
     <profiles>
         <profile>
             <id>ci</id>
@@ -239,6 +231,54 @@
                         <configuration>
                             <!-- pretty sure this has to work nicer. dont wanna waste more time into it, though -->
                             <skip>${skipFormatPlugin}</skip>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <!-- This profile is used to avoid running the deployment in non-deployment
+            contexts because they require specific keys from the Github remote. Include
+            this profile by setting the -Pdeployment flag. -->
+        <profile>
+            <id>deployment</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>3.0.1</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                                <configuration>
+                                    <gpgArguments>
+                                        <arg>--pinentry-mode</arg>
+                                        <arg>loopback</arg>
+                                    </gpgArguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-release-plugin</artifactId>
+                        <version>3.0.1</version>
+                        <configuration>
+                            <tagNameFormat>@{project.version}</tagNameFormat>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.13</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://s01.oss.sonatype.org</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
                         </configuration>
                     </plugin>
                 </plugins>
