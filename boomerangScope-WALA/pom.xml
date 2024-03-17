@@ -6,7 +6,6 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-  <groupId>de.codeshield</groupId>
     <artifactId>boomerangScope-WALA</artifactId>
 
     <properties>
