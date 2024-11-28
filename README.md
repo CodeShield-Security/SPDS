@@ -1,5 +1,13 @@
 [![Java CI with Maven](https://github.com/CodeShield-Security/SPDS/workflows/Java%20CI%20with%20Maven/badge.svg?branch=master)](https://github.com/CodeShield-Security/SPDS/actions)
 
+# IMPORTANT: This version is no longer maintained
+
+An updated version of Boomerang can be found [here](https://github.com/secure-software-engineering/SparseBoomerang). **We highly recommend using this version**. You can also find older Boomerang versions here (not recommended):
+- [Boomerang v1](https://github.com/secure-software-engineering/boomerang)
+- [Boomerang v2](https://github.com/CROSSINGTUD/SPDS)
+- [Boomerang v3.0.0 - v3.1.2](https://github.com/CodeShield-Security/SPDS) (This repository)
+- [Boomerang v3.2.0+](https://github.com/secure-software-engineering/SparseBoomerang) (recommended)
+
 # SPDS
 
 This repository contains a Java implementation of Synchronized Pushdown Systems.
